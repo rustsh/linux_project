@@ -1,0 +1,48 @@
+---
+- name: Add Docker repo
+  get_url:
+    url: https://download.docker.com/linux/centos/docker-ce.repo
+    dest: /etc/yum.repos.d/docker-ce.repo
+
+- name: Install Docker
+  yum:
+    name: [docker-ce, docker-ce-cli, containerd.io]
+    state: present
+
+- name: Start Docker
+  systemd:
+    name: docker
+    state: started
+    enabled: yes
+
+- name: Add EPEL repo
+  yum:
+    name: epel-release
+    state: present
+
+- name: Install pip
+  yum:
+    name: python-pip
+    state: present
+
+- name: Upgrade pip
+  pip:
+    name: pip
+    extra_args: --upgrade
+
+- name: Install Docker SDK for Python and Docker Compose
+  pip:
+    name: [docker, docker-compose]
+    state: present
+
+# - name: Install Docker Compose {{ docker_compose_version }}
+#   get_url:
+#     url: https://github.com/docker/compose/releases/download/{{ docker_compose_version }}/docker-compose-Linux-x86_64
+#     dest: /usr/local/bin/docker-compose
+#     mode: "0755"
+
+# - name: Create a symbolic link to Docker Compose
+#   file:
+#     src: /usr/local/bin/docker-compose
+#     dest: /usr/bin/docker-compose
+#     state: link
