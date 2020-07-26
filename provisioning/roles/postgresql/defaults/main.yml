@@ -1,0 +1,12 @@
+---
+# Database credentials
+nextcloud_postgres_db: nextcloud
+nextcloud_postgres_user: nextcloud
+nextcloud_postgres_password: nextcloud
+
+# Nexcloud admin credentials
+nextcloud_admin_user: admin
+nextcloud_admin_password: adminpassword
+
+# Path to docker compose file
+project_dir: /opt/nextcloud_db
