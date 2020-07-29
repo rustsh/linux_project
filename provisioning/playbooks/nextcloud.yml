@@ -1,8 +1,0 @@
----
-- hosts: web
-  vars:
-    nexcloud_host: 10.10.10.10
-    db_host: 10.10.10.20
-  roles:
-    - docker
-    - nextcloud

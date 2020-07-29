@@ -1,4 +1,14 @@
 ---
+# - name: Generate SSH keys for root
+#   user:
+#     name: root
+#     generate_ssh_key: yes
+
+# - name: Create SSH config
+#   copy:
+#     content: StrictHostKeyChecking no
+#     dest: /root/.ssh/config
+
 - name: Create a directory for Docker Compose file
   file:
     path: "{{ project_dir }}"

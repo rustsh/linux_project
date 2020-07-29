@@ -1,0 +1,4 @@
+---
+- name: Run Nextcloud
+  docker_compose:
+    project_src: "{{ project_dir }}"
