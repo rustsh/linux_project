@@ -2,7 +2,6 @@ version: '3'
 
 services:
   app:
-    container_name: app-server
     image: nextcloud:fpm-alpine
     restart: always
     volumes:
@@ -15,16 +14,7 @@ services:
       - app.env
       - app_cred.env
 
-  onlyoffice-document-server:
-    container_name: onlyoffice/documentserver
-    image: onlyoffice/documentserver:latest
-    restart: always
-    volumes:
-      - /opt/document_data:/var/www/onlyoffice/Data
-      - /opt/document_log:/var/log/onlyoffice
-
-  nginx:
-    container_name: nginx-server
+  web:
     image: nginx:alpine
     restart: always
     ports:
@@ -34,4 +24,3 @@ services:
       - ./nextcloud:/var/www/html:ro
     depends_on:
       - app
-      - onlyoffice-document-server

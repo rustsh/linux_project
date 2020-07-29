@@ -5,7 +5,7 @@
     db_host: 10.10.10.20
     redis_host: 10.10.10.31
   roles:
-    - docker
-    - glusterfs-install
+    # - docker
+    # - glusterfs-install
     # - glusterfs-create
-    # - nextcloud
+    - nextcloud
