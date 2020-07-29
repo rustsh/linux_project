@@ -1,0 +1,23 @@
+---
+- name: add epel repo
+  yum:
+    name: epel-release
+    state: present
+
+- name: install haproxy
+  yum:
+    name: haproxy
+    state: present
+  
+- name: copy haproxy config
+  copy:
+    src: haproxy.cfg
+    dest: /etc/haproxy/haproxy.cfg
+  notify:
+    - restart haproxy
+
+- name: start haproxy
+  systemd:
+    name: haproxy
+    state: started
+    enabled: yes

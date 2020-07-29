@@ -1,0 +1,23 @@
+---
+- name: add epel repo
+  yum:
+    name: epel-release
+    state: present
+
+- name: install keepalived
+  yum:
+    name: keepalived
+    state: present
+
+- name: copy keepalived config
+  template:
+    src: keepalived.conf.j2
+    dest: /etc/keepalived/keepalived.conf
+  notify:
+    - restart keepalived
+
+- name: start keepalived
+  systemd:
+    name: keepalived
+    state: started
+    enabled: yes

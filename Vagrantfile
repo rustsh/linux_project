@@ -56,4 +56,20 @@ Vagrant.configure("2") do |config|
     end
   end
 
+  config.vm.define "ha1" do |ha1|
+    ha1.vm.hostname = "ha1"
+    ha1.vm.network "private_network", ip: "10.10.10.41"
+    ha1.vm.provision "ansible" do |ansible|
+      ansible.playbook = "provisioning/playbooks/haproxy.yml"
+    end
+  end
+
+  config.vm.define "ha2" do |ha2|
+    ha2.vm.hostname = "ha2"
+    ha2.vm.network "private_network", ip: "10.10.10.42"
+    ha2.vm.provision "ansible" do |ansible|
+      ansible.playbook = "provisioning/playbooks/haproxy.yml"
+    end
+  end
+
 end
