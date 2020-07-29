@@ -12,17 +12,18 @@ Vagrant.configure("2") do |config|
     end
   end
 
-  # config.vm.define "redis1" do |redis1|
-  #   redis1.vm.hostname = "redis1"
-  #   redis1.vm.network "private_network", ip: "10.10.10.31"
-  #   redis1.vm.provision "ansible" do |ansible|
-  #     ansible.playbook = "provisioning/playbooks/redis.yml"
-  #   end
-  # end
+  config.vm.define "redis1" do |redis1|
+    redis1.vm.hostname = "redis1"
+    redis1.vm.network "private_network", ip: "10.10.10.31"
+    redis1.vm.provision "ansible" do |ansible|
+      ansible.playbook = "provisioning/playbooks/redis.yml"
+    end
+  end
 
   config.vm.define "web1" do |web1|
     web1.vm.hostname = "web1"
     web1.vm.network "private_network", ip: "10.10.10.11"
+    web1.vm.network "forwarded_port", guest: 8080, host: 8080
     web1.vm.provider "virtualbox" do |vb|
       vb.memory = 1024
       # vb.cpus = 2
