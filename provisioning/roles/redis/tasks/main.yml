@@ -4,17 +4,10 @@
     path: "{{ project_dir }}"
     state: directory
 
-- name: Copy files to "{{ project_dir }}"
+- name: Copy docker-compose.yml to {{ project_dir }}
   copy:
-    src: "{{ role_path }}/files/"
-    dest: "{{ project_dir }}/"
-
-# - name: Copy env files to "{{ project_dir }}"
-#   template:
-#     src: "{{ item }}"
-#     dest: "{{ project_dir }}/{{ item | basename | regex_replace('\\.j2$', '') }}"
-#   with_fileglob:
-#     - "{{ role_path }}/templates/*.j2"
+    src: docker-compose.yml
+    dest: "{{ project_dir }}/docker-compose.yml"
 
 - name: Run Redis
   docker_compose:

@@ -18,6 +18,7 @@
     name: nextcloud-gfs
     bricks: /opt/gluster-volume-nextcloud
     replicas: 3
+    arbiters: 1
     force: yes
     cluster:
       - 10.10.10.11
@@ -29,6 +30,7 @@
   gluster_volume:
     state: started
     name: nextcloud-gfs
+  run_once: true
 
 - name: Create directory for mount gluster volume
   file:

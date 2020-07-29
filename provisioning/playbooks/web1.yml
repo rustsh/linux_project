@@ -1,11 +1,11 @@
 ---
 - hosts: web1
   vars:
-    nexcloud_host: 10.10.10.11 10.10.10.12 10.10.10.13
+    nexcloud_host: 10.10.10.10 10.10.10.11 10.10.10.12 10.10.10.13 10.51.21.179
     db_host: 10.10.10.20
     redis_host: 10.10.10.31
   roles:
-    # - docker
-    # - glusterfs-install
+    - docker
+    - glusterfs-install
     # - glusterfs-create
-    - nextcloud
+    # - nextcloud

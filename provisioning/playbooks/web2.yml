@@ -1,7 +1,7 @@
 ---
-- hosts: web2,web3
+- hosts: all
   roles:
-    # - docker
-    # - glusterfs-install
-    - glusterfs-create
+    - docker
+    - glusterfs-install
+    # - glusterfs-create
     # - nextcloud-replica

@@ -25,8 +25,8 @@ Vagrant.configure("2") do |config|
     web1.vm.network "private_network", ip: "10.10.10.11"
     web1.vm.network "forwarded_port", guest: 8080, host: 8080
     web1.vm.provider "virtualbox" do |vb|
-      vb.memory = 1024
-      # vb.cpus = 2
+      vb.memory = 2048
+      vb.cpus = 2
     end
     web1.vm.provision "ansible" do |ansible|
       ansible.playbook = "provisioning/playbooks/web1.yml"
@@ -37,8 +37,8 @@ Vagrant.configure("2") do |config|
     web2.vm.hostname = "web2"
     web2.vm.network "private_network", ip: "10.10.10.12"
     web2.vm.provider "virtualbox" do |vb|
-      vb.memory = 1024
-      # vb.cpus = 2
+      vb.memory = 2048
+      vb.cpus = 2
     end
     web2.vm.provision "ansible" do |ansible|
       ansible.playbook = "provisioning/playbooks/web2.yml"
@@ -49,8 +49,8 @@ Vagrant.configure("2") do |config|
     web3.vm.hostname = "web3"
     web3.vm.network "private_network", ip: "10.10.10.13"
     web3.vm.provider "virtualbox" do |vb|
-      vb.memory = 1024
-      # vb.cpus = 2
+      vb.memory = 2048
+      vb.cpus = 2
     end
     web3.vm.provision "ansible" do |ansible|
       ansible.playbook = "provisioning/playbooks/web2.yml"
