@@ -1,0 +1,21 @@
+---
+- name: Create a directory for Docker Compose file
+  file:
+    path: "{{ project_dir }}"
+    state: directory
+
+- name: Copy files to "{{ project_dir }}"
+  copy:
+    src: "{{ role_path }}/files/"
+    dest: "{{ project_dir }}/"
+
+# - name: Copy env files to "{{ project_dir }}"
+#   template:
+#     src: "{{ item }}"
+#     dest: "{{ project_dir }}/{{ item | basename | regex_replace('\\.j2$', '') }}"
+#   with_fileglob:
+#     - "{{ role_path }}/templates/*.j2"
+
+- name: Run Redis
+  docker_compose:
+    project_src: "{{ project_dir }}"

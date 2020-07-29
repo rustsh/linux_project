@@ -1,0 +1,5 @@
+---
+- hosts: redis1
+  roles:
+    - docker
+    - redis

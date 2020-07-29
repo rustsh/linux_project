@@ -3,5 +3,5 @@
   roles:
     # - docker
     # - glusterfs-install
-    # - glusterfs-create
-    - nextcloud-replica
+    - glusterfs-create
+    # - nextcloud-replica

@@ -12,23 +12,23 @@
     path: /opt/gluster-volume-nextcloud
     state: directory
 
-# - name: Create gluster volume
-#   gluster_volume:
-#     state: present
-#     name: nextcloud-gfs
-#     bricks: /opt/gluster-volume-nextcloud
-#     replicas: 3
-#     force: yes
-#     cluster:
-#       - 10.10.10.11
-#       - 10.10.10.12
-#       - 10.10.10.13
-#   run_once: true
+- name: Create gluster volume
+  gluster_volume:
+    state: present
+    name: nextcloud-gfs
+    bricks: /opt/gluster-volume-nextcloud
+    replicas: 3
+    force: yes
+    cluster:
+      - 10.10.10.11
+      - 10.10.10.12
+      - 10.10.10.13
+  run_once: true
  
 - name: Start gluster volume if it's stopped
   gluster_volume:
-   state: started
-   name: nextcloud-gfs
+    state: started
+    name: nextcloud-gfs
 
 - name: Create directory for mount gluster volume
   file:
