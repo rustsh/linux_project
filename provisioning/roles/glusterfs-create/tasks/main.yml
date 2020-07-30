@@ -34,13 +34,15 @@
 
 - name: Create directory for mount gluster volume
   file:
-    path: /opt/nextcloud
+    path: /mnt/nextcloud
     state: directory
 
 - name: Mount GlusterFS
   mount:
-    path: /opt/nextcloud
+    path: /mnt/nextcloud
     src: localhost:/nextcloud-gfs
     fstype: glusterfs
-    opts: defaults,_netdev,backupvolfile-server=localhost
+    opts: defaults,_netdev
     state: mounted
+
+# backupvolfile-server=localhost
