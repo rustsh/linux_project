@@ -1,0 +1,4 @@
+---
+server_ip: 10.10.10.51
+mnt_path: /opt/nexcloud
+share_path: /opt/nexcloud_data

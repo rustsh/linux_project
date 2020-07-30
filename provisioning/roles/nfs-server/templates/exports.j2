@@ -1,0 +1,3 @@
+{% for ip in client_ip %}
+{{ share_path }} {{ ip }}(rw,sync,no_root_squash,no_all_squash)
+{% endfor %}

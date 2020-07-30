@@ -20,6 +20,14 @@ Vagrant.configure("2") do |config|
     end
   end
 
+  config.vm.define "nfs1" do |nfs1|
+    nfs1.vm.hostname = "nfs1"
+    nfs1.vm.network "private_network", ip: "10.10.10.51"
+    nfs1.vm.provision "ansible" do |ansible|
+      ansible.playbook = "provisioning/playbooks/nfs.yml"
+    end
+  end
+
   config.vm.define "web1" do |web1|
     web1.vm.hostname = "web1"
     web1.vm.network "private_network", ip: "10.10.10.11"
@@ -29,7 +37,7 @@ Vagrant.configure("2") do |config|
       vb.cpus = 2
     end
     web1.vm.provision "ansible" do |ansible|
-      ansible.playbook = "provisioning/playbooks/web-master.yml"
+      ansible.playbook = "provisioning/playbooks/web-first.yml"
     end
   end
 
