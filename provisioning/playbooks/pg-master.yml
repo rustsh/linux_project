@@ -1,8 +1,9 @@
 ---
 - name: Config master server
-  hosts: master
-  vars_files:
-    - ../vars.yml
+  hosts: all
+  vars:
+    master_host_ip: 10.10.10.21
+    slave_host_ip: 10.10.10.22
   roles:
     - pgsql-install
     - pgsql-replica-master

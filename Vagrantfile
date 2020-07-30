@@ -4,14 +4,25 @@
 Vagrant.configure("2") do |config|
   config.vm.box = "centos/7"
 
-  config.vm.define "db1" do |db1|
-    db1.vm.hostname = "db1"
-    db1.vm.network "private_network", ip: "10.10.10.20"
-    db1.vm.provider "virtualbox" do |vb|
+  config.vm.define "dbmaster" do |dbmaster|
+    dbmaster.vm.hostname = "dbmaster"
+    dbmaster.vm.network "private_network", ip: "10.10.10.21"
+    dbmaster.vm.provider "virtualbox" do |vb|
       vb.memory = 1024
     end
-    db1.vm.provision "ansible" do |ansible|
-      ansible.playbook = "provisioning/playbooks/db.yml"
+    dbmaster.vm.provision "ansible" do |ansible|
+      ansible.playbook = "provisioning/playbooks/pg-master.yml"
+    end
+  end
+
+  config.vm.define "dbslave" do |dbslave|
+    dbslave.vm.hostname = "dbslave"
+    dbslave.vm.network "private_network", ip: "10.10.10.22"
+    dbslave.vm.provider "virtualbox" do |vb|
+      vb.memory = 1024
+    end
+    dbslave.vm.provision "ansible" do |ansible|
+      ansible.playbook = "provisioning/playbooks/pg-slave.yml"
     end
   end
 
