@@ -1,7 +1,4 @@
 ---
-# hosts
-master_host_ip: 10.10.10.10
-
 # credentials
 barman_login: barman
 barman_password: barmanpassword

@@ -1,7 +1,4 @@
 ---
-# hosts
-backup_host_ip: 10.10.10.30
-
 # credentials
 barman_login: barman
 barman_password: barmanpassword
