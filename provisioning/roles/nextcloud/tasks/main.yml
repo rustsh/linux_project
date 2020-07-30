@@ -11,21 +11,21 @@
 
 - name: Create a directory for Docker Compose file
   file:
-    path: "{{ project_dir }}"
+    path: "{{ project_dir }}-local"
     state: directory
 
-- name: Copy files to "{{ project_dir }}"
+- name: Copy files to "{{ project_dir }}-local"
   copy:
     src: "{{ role_path }}/files/"
-    dest: "{{ project_dir }}/"
+    dest: "{{ project_dir }}-local/"
 
-- name: Copy env files to "{{ project_dir }}"
+- name: Copy env files to "{{ project_dir }}-local"
   template:
     src: "{{ item }}"
-    dest: "{{ project_dir }}/{{ item | basename | regex_replace('\\.j2$', '') }}"
+    dest: "{{ project_dir }}-local/{{ item | basename | regex_replace('\\.j2$', '') }}"
   with_fileglob:
     - "{{ role_path }}/templates/*.j2"
 
-# - name: Run Nextcloud
-#   docker_compose:
-#     project_src: "{{ project_dir }}"
+- name: Run Nextcloud
+  docker_compose:
+    project_src: "{{ project_dir }}-local"

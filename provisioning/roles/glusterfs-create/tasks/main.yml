@@ -17,7 +17,7 @@
     state: present
     name: nextcloud-gfs
     bricks: /opt/gluster-volume-nextcloud
-    replicas: 3
+    replicas: 2
     arbiters: 1
     force: yes
     cluster:
@@ -31,6 +31,29 @@
     state: started
     name: nextcloud-gfs
   run_once: true
+
+# - name: Tune GlusterFS
+#   command: gluster volume set nextcloud-gfs {{ item }}
+#   with_items:
+#     - performance.write-behind on
+#     - nfs.disable on
+#     - cluster.lookup-optimize off
+#     - performance.stat-prefetch off
+#     - server.allow-insecure on
+#     - storage.batch-fsync-delay-usec 0
+#     - performance.client-io-threads off
+#     - network.frame-timeout 60
+#     - performance.quick-read on
+#     - performance.flush-behind off
+#     - performance.io-cache off
+#     - performance.read-ahead off
+#     - performance.cache-size 0
+#     - performance.io-thread-count 64
+#     - performance.high-prio-threads 64
+#     - performance.normal-prio-threads 64
+#     - network.ping-timeout 5
+#     - server.event-threads 16
+#     - client.event-threads 16
 
 - name: Create directory for mount gluster volume
   file:

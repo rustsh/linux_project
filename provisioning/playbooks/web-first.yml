@@ -1,12 +1,11 @@
 ---
 - hosts: all
   vars:
-    nexcloud_host: 10.10.10.10 10.10.10.11 10.10.10.12 10.10.10.13 10.51.21.179
+    nexcloud_host: 10.10.10.10 10.10.10.11 10.10.10.12 10.51.21.179
     db_host: 10.10.10.20
     redis_host: 10.10.10.31
   roles:
     - docker
-    # - nfs-client
     - glusterfs-install
     # - glusterfs-create
     # - nextcloud

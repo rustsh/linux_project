@@ -20,8 +20,8 @@ services:
     image: onlyoffice/documentserver:latest
     restart: always
     volumes:
-      - /opt/document_data:/var/www/onlyoffice/Data
-      - /opt/document_log:/var/log/onlyoffice
+      - ./document_data:/var/www/onlyoffice/Data
+      - ./document_log:/var/log/onlyoffice
 
   nginx:
     container_name: nginx-server
