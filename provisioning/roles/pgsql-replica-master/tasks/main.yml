@@ -1,0 +1,57 @@
+---
+- name: Create nextcloud user
+  become_user: postgres
+  postgresql_user:
+    name: nextcloud
+    password: nextcloud
+    expires: infinity
+  no_log: yes
+
+- name: Create nextcloud database
+  become_user: postgres  
+  postgresql_db:
+    name: nextcloud
+    owner: nextcloud
+
+- name: Create postgresql user for replication
+  become_user: postgres  
+  postgresql_user:
+    name: "{{ repluser_login }}"
+    password: "{{ repluser_password }}"
+    role_attr_flags: REPLICATION
+    expires: infinity
+  no_log: yes
+
+- name: Add password of replication user to .pgpass
+  lineinfile:
+    path: /var/lib/pgsql/.pgpass
+    line: "*:*:*:{{ repluser_login }}:{{ repluser_password }}"
+    create: yes
+
+- name: Allow {{ repluser_login }} connect to master
+  lineinfile:
+    path: "{{ db_path }}/pg_hba.conf"
+    line: host    replication     {{ repluser_login }}             {{ slave_host_ip }}/32            md5
+  notify:
+    - Restart postgresql
+
+- name: Copy postgresql.conf with settings for replication
+  copy:
+    src: postgresql.conf
+    dest: "{{ db_path }}/postgresql.conf"
+  notify:
+    - Restart postgresql
+
+- name: Check if slot for replication exists
+  become_user: postgres
+  postgresql_query:
+    db: postgres
+    query: SELECT slot_name FROM pg_replication_slots where slot_name = '{{ slot_name }}';
+  register: replica_slot
+
+- name: Create slot for replication
+  become_user: postgres
+  postgresql_query:
+    db: postgres
+    query: SELECT * FROM pg_create_physical_replication_slot('{{ slot_name }}');
+  when: replica_slot.query_result | length == 0
