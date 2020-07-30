@@ -6,7 +6,7 @@
     redis_host: 10.10.10.31
   roles:
     - docker
-    - nfs-client
+    # - nfs-client
     - glusterfs-install
     # - glusterfs-create
     # - nextcloud

@@ -10,10 +10,10 @@
     state: started
     enabled: yes
 
-# - name: Create folder to mount
-#   file:
-#     path: "{{ mnt_path }}"
-#     state: directory
+- name: Create folder to mount
+  file:
+    path: "{{ mnt_path }}"
+    state: directory
 
 - name: Mount shared folder
   mount:

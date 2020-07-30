@@ -2,7 +2,7 @@
 - hosts: all
   roles:
     - docker
-    - nfs-client
+    # - nfs-client
     - glusterfs-install
     # - glusterfs-create
     # - nextcloud-replica

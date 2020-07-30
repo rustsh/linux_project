@@ -1,5 +1,5 @@
 ---
-share_path: /opt/nextcloud_data
+share_path: /var/nextcloud_data
 client_ip:
   - 10.10.10.11
   - 10.10.10.12
