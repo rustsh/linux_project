@@ -29,7 +29,7 @@ Vagrant.configure("2") do |config|
       vb.cpus = 2
     end
     web1.vm.provision "ansible" do |ansible|
-      ansible.playbook = "provisioning/playbooks/web1.yml"
+      ansible.playbook = "provisioning/playbooks/web-master.yml"
     end
   end
 
@@ -41,7 +41,7 @@ Vagrant.configure("2") do |config|
       vb.cpus = 2
     end
     web2.vm.provision "ansible" do |ansible|
-      ansible.playbook = "provisioning/playbooks/web2.yml"
+      ansible.playbook = "provisioning/playbooks/web-replica.yml"
     end
   end
 
@@ -53,7 +53,7 @@ Vagrant.configure("2") do |config|
       vb.cpus = 2
     end
     web3.vm.provision "ansible" do |ansible|
-      ansible.playbook = "provisioning/playbooks/web2.yml"
+      ansible.playbook = "provisioning/playbooks/web-replica.yml"
     end
   end
 

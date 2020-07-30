@@ -1,5 +1,5 @@
 ---
-- hosts: db1
+- hosts: all
   roles:
     - docker
     - postgresql
