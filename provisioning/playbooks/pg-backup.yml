@@ -1,11 +1,9 @@
 ---
-- name: Config master server
-  hosts: all
+- name: Config slave server
+  hosts: dbbackup
   vars:
     master_host_ip: 10.10.10.21
     slave_host_ip: 10.10.10.22
     backup_host_ip: 10.10.10.23
   roles:
-    - pgsql-install
-    - pgsql-replica-master
-    - barman-master
+    - barman-backup

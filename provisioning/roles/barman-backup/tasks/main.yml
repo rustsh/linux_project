@@ -73,4 +73,4 @@
     user: postgres
     state: present
     key: "{{ barman_pub_key.public_key }}"
-  delegate_to: master
+  delegate_to: dbmaster

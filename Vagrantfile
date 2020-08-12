@@ -26,6 +26,18 @@ Vagrant.configure("2") do |config|
     end
   end
 
+  config.vm.define "dbbackup" do |dbbackup|
+    dbbackup.vm.hostname = "dbbackup"
+    dbbackup.vm.network "private_network", ip: "10.10.10.23"
+    dbbackup.vm.provider "virtualbox" do |vb|
+      vb.memory = 1024
+    end
+    dbbackup.vm.provision "ansible" do |ansible|
+      ansible.limit = "all"
+      ansible.playbook = "provisioning/playbooks/pg-backup.yml"
+    end
+  end
+
   config.vm.define "redis1" do |redis1|
     redis1.vm.hostname = "redis1"
     redis1.vm.network "private_network", ip: "10.10.10.31"
